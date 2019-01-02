@@ -26,7 +26,7 @@ under the License.
         <groupId>io.ibigdata.flink</groupId>
         <artifactId>bigdata-flink</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>..</relativePath>
     </parent>
 
     <artifactId>flink-batch</artifactId>

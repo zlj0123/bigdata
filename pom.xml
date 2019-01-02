@@ -33,6 +33,8 @@ under the License.
         <module>flink-batch</module>
         <module>flink-streaming</module>
         <module>flink-table</module>
+        <module>flink-quickstart-java</module>
+        <module>flink-quickstart-scala</module>
     </modules>
 
     <properties>
