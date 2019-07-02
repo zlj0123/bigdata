@@ -40,10 +40,10 @@ under the License.
     <properties>
         <hadoop.version>2.7.7</hadoop.version>
         <zookeeper.version>3.4.13</zookeeper.version>
-        <flink.version>1.7.1</flink.version>
+        <flink.version>1.8.0</flink.version>
         <elasticsearch.version>6.5.0</elasticsearch.version>
         <kafka.version>2.1.0</kafka.version>
-        <scala.version>2.12.7</scala.version>
+        <scala.version>2.12.8</scala.version>
         <scala.binary.version>2.12</scala.binary.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
@@ -236,6 +236,22 @@ under the License.
 
             <dependency>
                 <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.flink</groupId>
                 <artifactId>flink-clients_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
             </dependency>
@@ -262,14 +278,13 @@ under the License.
 
             <dependency>
                 <groupId>org.apache.flink</groupId>
-                <artifactId>flink-table_${scala.binary.version}</artifactId>
-                <version>${flink.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.flink</groupId>
                 <artifactId>flink-connector-wikiedits_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.58</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
