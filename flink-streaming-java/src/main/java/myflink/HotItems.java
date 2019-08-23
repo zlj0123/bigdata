@@ -66,9 +66,8 @@ public class HotItems {
         PojoCsvInputFormat<UserBehavior> csvInput = new PojoCsvInputFormat<>(filePath, pojoType, fieldOrder);
 
 
-        env
-                // 创建数据源，得到 UserBehavior 类型的 DataStream
-                .createInput(csvInput, pojoType)
+        // 创建数据源，得到 UserBehavior 类型的 DataStream
+        env.createInput(csvInput, pojoType)
                 // 抽取出时间和生成 watermark
                 .assignTimestampsAndWatermarks(new AscendingTimestampExtractor<UserBehavior>() {
                     @Override
