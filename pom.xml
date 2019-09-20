@@ -31,10 +31,8 @@ under the License.
 
     <modules>
         <module>flink-batch</module>
-        <module>flink-streaming-java</module>
-		<module>flink-streaming-scala</module>
-        <module>flink-quickstart-java</module>
-        <module>flink-quickstart-scala</module>
+        <module>flink-streaming</module>
+        <module>flink-quickstart</module>
     </modules>
 
     <properties>
@@ -213,21 +211,6 @@ under the License.
                 <artifactId>flink-sql-client_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-examples-streaming_${scala.binary.version}</artifactId>
-                <version>${flink.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-examples-batch_${scala.binary.version}</artifactId>
-                <version>${flink.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-examples-table_${scala.binary.version}</artifactId>
-                <version>${flink.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.apache.flink</groupId>
@@ -236,18 +219,12 @@ under the License.
             </dependency>
             <dependency>
                 <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
                 <artifactId>flink-connector-elasticsearch6_${scala.binary.version}</artifactId>
-                <version>${flink.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-quickstart-scala</artifactId>
-                <version>${flink.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.flink</groupId>
-                <artifactId>flink-quickstart-java</artifactId>
                 <version>${flink.version}</version>
             </dependency>
 
@@ -297,7 +274,11 @@ under the License.
                 <artifactId>flink-runtime_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-shaded-jackson</artifactId>
+                <version>2.9.8-7.0</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-test-utils_${scala.binary.version}</artifactId>
