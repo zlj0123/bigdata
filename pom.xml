@@ -30,9 +30,10 @@ under the License.
     <description>flink study</description>
 
     <modules>
+		<module>flink-quickstart</module>
         <module>flink-batch</module>
         <module>flink-streaming</module>
-        <module>flink-quickstart</module>
+        <module>flink-table</module>
     </modules>
 
     <properties>
