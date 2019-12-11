@@ -17,7 +17,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -30,7 +30,7 @@ under the License.
     <description>flink study</description>
 
     <modules>
-		<module>flink-quickstart</module>
+        <module>flink-quickstart</module>
         <module>flink-batch</module>
         <module>flink-streaming</module>
         <module>flink-table</module>
@@ -327,12 +327,9 @@ under the License.
                             <shadedClassifierName>all</shadedClassifierName>
                             <transformers>
                                 <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/services/org.apache.hadoop.fs.FileSystem</resource>
-                                </transformer>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>reference.conf</resource>
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <!--注意：这里一定要换成你自己的 Job main 方法的启动类-->
+                                    <mainClass></mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
