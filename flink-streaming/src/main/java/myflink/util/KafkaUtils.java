@@ -1,6 +1,7 @@
-package myflink.connector.kafka;
+package myflink.util;
 
 import com.alibaba.fastjson.JSON;
+import myflink.connector.kafka.Metric;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
