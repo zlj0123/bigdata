@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class KafkaConfigUtil {
 
     private static final int RETRIES_CONFIG = 3;
-    public static String broker_list = "test-kafka1.hadoop.bigdata.dmp.com:9092,test-kafka2.hadoop.bigdata.dmp.com:9092,test-kafka3.hadoop.bigdata.dmp.com:9092";
+    public static String broker_list = "localhost:9092";
 
     /**
      * @param groupId groupId

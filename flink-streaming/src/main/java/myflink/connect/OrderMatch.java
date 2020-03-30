@@ -41,8 +41,6 @@ public class OrderMatch {
 
     private static final String KAFKA_CONSUMER_GROUP_ID = "console-consumer-93645";
 
-    private static final String KAFKA_TOPIC = "order-log";
-
     private static final String JOB_NAME = KAFKA_CONSUMER_GROUP_ID;
 
 
@@ -206,6 +204,4 @@ public class OrderMatch {
 
         env.execute(JOB_NAME);
     }
-
-
 }

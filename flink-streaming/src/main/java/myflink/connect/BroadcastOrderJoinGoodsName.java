@@ -30,7 +30,6 @@ import java.util.Objects;
 public class BroadcastOrderJoinGoodsName {
 
     private static final String KAFKA_CONSUMER_GROUP_ID = "console-consumer-93645";
-
     private static final String JOB_NAME = KAFKA_CONSUMER_GROUP_ID;
 
     public static void main(String[] args) throws Exception {

@@ -55,7 +55,6 @@ public class CheckpointUtil {
     public static void setFsStateBackend(StreamExecutionEnvironment env) throws IOException {
 
         env.enableCheckpointing(TimeUnit.MINUTES.toMillis(1));
-
         CheckpointConfig checkpointConf = env.getCheckpointConfig();
         checkpointConf.setMinPauseBetweenCheckpoints(TimeUnit.SECONDS.toMillis(50));
         checkpointConf.setCheckpointTimeout(TimeUnit.MINUTES.toMillis(3));
@@ -74,15 +73,12 @@ public class CheckpointUtil {
      * @throws IOException
      */
     public static void setMemoryStateBackend(StreamExecutionEnvironment env) throws IOException {
-
         env.enableCheckpointing(TimeUnit.MINUTES.toMillis(1));
-
         CheckpointConfig checkpointConf = env.getCheckpointConfig();
         checkpointConf.setMinPauseBetweenCheckpoints(TimeUnit.SECONDS.toMillis(50));
         checkpointConf.setCheckpointTimeout(TimeUnit.MINUTES.toMillis(2));
         checkpointConf.setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
         checkpointConf.enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-
     }
 
 }
