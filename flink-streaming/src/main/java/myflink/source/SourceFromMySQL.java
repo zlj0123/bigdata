@@ -12,6 +12,17 @@ public class SourceFromMySQL extends RichSourceFunction<Student> {
     PreparedStatement ps;
     private Connection connection;
 
+    private static Connection getConnection() {
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bigdata?useUnicode=true&characterEncoding=UTF-8", "root", "Zlj840123");
+        } catch (Exception e) {
+            System.out.println("mysql get connection has exception , msg = " + e.getMessage());
+        }
+        return con;
+    }
+
     /**
      * open() 方法中建立连接，这样不用每次 invoke 的时候都要建立连接和释放连接。
      *
@@ -63,16 +74,5 @@ public class SourceFromMySQL extends RichSourceFunction<Student> {
 
     @Override
     public void cancel() {
-    }
-
-    private static Connection getConnection() {
-        Connection con = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bigdata?useUnicode=true&characterEncoding=UTF-8", "root", "Zlj840123");
-        } catch (Exception e) {
-            System.out.println("mysql get connection has exception , msg = " + e.getMessage());
-        }
-        return con;
     }
 }

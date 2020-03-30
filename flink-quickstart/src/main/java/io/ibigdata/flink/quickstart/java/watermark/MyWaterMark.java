@@ -9,11 +9,10 @@ import java.text.SimpleDateFormat;
 public class MyWaterMark implements AssignerWithPeriodicWatermarks<Record> {
     //定义最大延迟 10s
     private final long maxOutOfOrderness = 10000L;
-    private long currentMaxTimestamp;
-    private Watermark watermark;
-
     //将时间戳信息格式化,调试学习
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private long currentMaxTimestamp;
+    private Watermark watermark;
 
     @Nullable
     @Override
@@ -29,9 +28,9 @@ public class MyWaterMark implements AssignerWithPeriodicWatermarks<Record> {
         currentMaxTimestamp = Math.max(timestamp, currentMaxTimestamp);
         //          将所有的时间信息打印
         System.out.println("currentThreadId:" + Thread.currentThread().getId()
-                + ",key:" + element.name + ",eventTime:[" + element.datetime + "],currentMaxTimestamp:["
-                + sdf.format(currentMaxTimestamp) + "],watermark:["
-                + sdf.format(getCurrentWatermark().getTimestamp()) + "]");
+                           + ",key:" + element.name + ",eventTime:[" + element.datetime + "],currentMaxTimestamp:["
+                           + sdf.format(currentMaxTimestamp) + "],watermark:["
+                           + sdf.format(getCurrentWatermark().getTimestamp()) + "]");
         //返回event中的时间戳
         return timestamp;
     }

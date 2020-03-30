@@ -9,7 +9,7 @@ import java.util.Map;
 public class Test {
     public static void main(String[] args) throws ParseException {
         String s = "{\"datetime\":\"2020-02-25 21:51:50\",\"name\":\"zhanglijun\"}";
-        Map<String,String> kv = JSON.parseObject(s, Map.class);
+        Map<String, String> kv = JSON.parseObject(s, Map.class);
         String name = kv.get("name");
         String datetime = kv.get("datetime");
 

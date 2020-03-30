@@ -25,80 +25,78 @@ import static org.apache.flink.util.Preconditions.checkNotNull;
  */
 public class Event {
 
-	private final EventType type;
+    private final EventType type;
 
-	private final int sourceAddress;
+    private final int sourceAddress;
 
-	/**
-	 * Creates a new event.
-	 *
-	 * @param type The event type.
-	 * @param sourceAddress The originating address (think 32 bit IPv4 address).
-	 */
-	public Event(EventType type, int sourceAddress) {
-		this.type = checkNotNull(type);
-		this.sourceAddress = sourceAddress;
-	}
+    /**
+     * Creates a new event.
+     *
+     * @param type          The event type.
+     * @param sourceAddress The originating address (think 32 bit IPv4 address).
+     */
+    public Event(EventType type, int sourceAddress) {
+        this.type = checkNotNull(type);
+        this.sourceAddress = sourceAddress;
+    }
 
-	/**
-	 * Gets the event's type.
-	 */
-	public EventType type() {
-		return type;
-	}
+    /**
+     * Util method to create a string representation of a 32 bit integer representing
+     * an IPv4 address.
+     *
+     * @param address The address, MSB first.
+     * @return The IP address string.
+     */
+    public static String formatAddress(int address) {
+        int b1 = (address >>> 24) & 0xff;
+        int b2 = (address >>> 16) & 0xff;
+        int b3 = (address >>> 8) & 0xff;
+        int b4 = address & 0xff;
 
-	/**
-	 * Gets the event's source address.
-	 */
-	public int sourceAddress() {
-		return sourceAddress;
-	}
+        return "" + b1 + '.' + b2 + '.' + b3 + '.' + b4;
+    }
 
-	// ------------------------------------------------------------------------
-	//  Miscellaneous
-	// ------------------------------------------------------------------------
+    /**
+     * Gets the event's type.
+     */
+    public EventType type() {
+        return type;
+    }
 
-	@Override
-	public int hashCode() {
-		return 31 * type.hashCode() + sourceAddress;
-	}
+    // ------------------------------------------------------------------------
+    //  Miscellaneous
+    // ------------------------------------------------------------------------
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		else if (obj == null || getClass() != obj.getClass()) {
-			return false;
-		}
-		else {
-			final Event that = (Event) obj;
-			return this.type == that.type && this.sourceAddress == that.sourceAddress;
-		}
-	}
+    /**
+     * Gets the event's source address.
+     */
+    public int sourceAddress() {
+        return sourceAddress;
+    }
 
-	@Override
-	public String toString() {
-		return "Event " + formatAddress(sourceAddress) + " : " + type.name();
-	}
+    @Override
+    public int hashCode() {
+        return 31 * type.hashCode() + sourceAddress;
+    }
 
-	// ------------------------------------------------------------------------
-	//  Utils
-	// ------------------------------------------------------------------------
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        } else {
+            final Event that = (Event) obj;
+            return this.type == that.type && this.sourceAddress == that.sourceAddress;
+        }
+    }
 
-	/**
-	 * Util method to create a string representation of a 32 bit integer representing
-	 * an IPv4 address.
-	 *
-	 * @param address The address, MSB first.
-	 * @return The IP address string.
-	 */
-	public static String formatAddress(int address) {
-		int b1 = (address >>> 24) & 0xff;
-		int b2 = (address >>> 16) & 0xff;
-		int b3 = (address >>>  8) & 0xff;
-		int b4 =  address         & 0xff;
+    // ------------------------------------------------------------------------
+    //  Utils
+    // ------------------------------------------------------------------------
 
-		return "" + b1 + '.' + b2 + '.' + b3 + '.' + b4;
-	}
+    @Override
+    public String toString() {
+        return "Event " + formatAddress(sourceAddress) + " : " + type.name();
+    }
 }

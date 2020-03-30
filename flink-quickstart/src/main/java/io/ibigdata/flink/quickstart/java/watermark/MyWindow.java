@@ -30,6 +30,6 @@ public class MyWindow implements WindowFunction<Record, String, String, TimeWind
         System.out.println("event.key:" + key + ",window中元素个数：" + size);
         // 调试使用
         out.collect("event.key:" + key + ",window中元素个数：" + size + ",window第一个元素时间戳：" + first + ",window最后一个元素时间戳："
-                + last + ",window开始时间戳：" + start + ",window结束时间戳：" + end + ",窗口内所有的时间戳：" + set.toString());
+                    + last + ",window开始时间戳：" + start + ",window结束时间戳：" + end + ",窗口内所有的时间戳：" + set.toString());
     }
 }

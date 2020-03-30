@@ -23,5 +23,5 @@ package org.apache.flink.streaming.examples.statemachine.event;
  */
 public enum EventType {
 
-	a, b, c, d, e, f, g;
+    a, b, c, d, e, f, g;
 }
