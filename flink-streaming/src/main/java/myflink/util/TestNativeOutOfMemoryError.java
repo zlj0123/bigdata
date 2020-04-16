@@ -1,4 +1,4 @@
-package myflink;
+package myflink.util;
 
 import java.util.concurrent.CountDownLatch;
 
