@@ -1,4 +1,4 @@
-package myflink.func;
+package myflink.func.process;
 
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.MapFunction;

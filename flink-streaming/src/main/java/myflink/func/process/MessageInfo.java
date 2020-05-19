@@ -1,4 +1,4 @@
-package myflink.func;
+package myflink.func.process;
 
 public class MessageInfo {
     String hostname;
