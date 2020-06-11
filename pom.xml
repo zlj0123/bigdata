@@ -228,6 +228,11 @@ under the License.
             </dependency>
             <dependency>
                 <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-api-java</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
                 <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
             </dependency>
@@ -301,8 +306,8 @@ under the License.
                             <artifactSet>
                                 <excludes>
                                     <exclude>com.google.code.findbugs:jsr305</exclude>
-                                    <exclude>org.slf4j:*</exclude>
-                                    <exclude>log4j:*</exclude>
+<!--                                    <exclude>org.slf4j:*</exclude>-->
+<!--                                    <exclude>log4j:*</exclude>-->
                                 </excludes>
                             </artifactSet>
                             <filters>

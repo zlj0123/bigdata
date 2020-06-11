@@ -1,4 +1,4 @@
-package myflink.func;
+package myflink.func.process;
 
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
