@@ -16,7 +16,7 @@ public class TableSQL {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         BatchTableEnvironment tableEnv = BatchTableEnvironment.create(env);
 
-        DataSet<String> input = env.readTextFile("score.csv");
+        DataSet<String> input = env.readTextFile("inout/score.csv");
         input.print();
 
         DataSet<PlayerData> topInput = input.map(new MapFunction<String, PlayerData>() {
@@ -49,12 +49,11 @@ public class TableSQL {
         DataSet<Result> result = tableEnv.toDataSet(queryResult, Result.class);
         result.print();
 
-        TableSink sink = new CsvTableSink("result.csv", ",");
+        TableSink sink = new CsvTableSink("inout/result.csv", ",");
         String[] fieldNames = {"name", "num"};
-        TypeInformation[] fieldTypes = {Types.STRING, Types.INT};
+        TypeInformation[] fieldTypes = {Types.STRING, Types.LONG};
         tableEnv.registerTableSink("result", fieldNames, fieldTypes, sink);
-        queryResult.insertInto("result");
-
+        queryResult.insertInto("`result`");
 
         env.execute();
     }
