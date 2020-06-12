@@ -1,49 +1,101 @@
 package myflink.util;
 
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.ProducerConfig;
 
+import myflink.constant.PropertiesConstants;
+import myflink.data.MetricEvent;
+import myflink.schema.MetricSchema;
+import org.apache.flink.api.java.utils.ParameterTool;
+import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
+import org.apache.flink.streaming.connectors.kafka.internals.KafkaTopicPartition;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
+import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.TopicPartition;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+
+import static myflink.constant.PropertiesConstants.*;
 
 /**
- * @author fanrui
- * @time 2020-01-04 15:41:10
+ * blog：http://www.54tianzhisheng.cn/
+ * 微信公众号：zhisheng
  */
 public class KafkaConfigUtil {
 
-    private static final int RETRIES_CONFIG = 3;
-    public static String broker_list = "localhost:9092";
-
     /**
-     * @param groupId groupId
-     * @return ConsumerProps
+     * 设置基础的 Kafka 配置
+     *
+     * @return
      */
-    public static Properties buildConsumerProps(String groupId) {
-        Properties consumerProps = new Properties();
-        consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, broker_list);
-        consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        consumerProps.setProperty(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, "5000");
-        consumerProps.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "20000");
-        consumerProps.setProperty(FlinkKafkaConsumerBase.KEY_PARTITION_DISCOVERY_INTERVAL_MILLIS,
-                Long.toString(TimeUnit.MINUTES.toMillis(1)));
-        return consumerProps;
+    public static Properties buildKafkaProps() {
+        return buildKafkaProps(ParameterTool.fromSystemProperties());
     }
 
     /**
-     * @return ProducerProps
+     * 设置 kafka 配置
+     *
+     * @param parameterTool
+     * @return
      */
-    public static Properties buildProducerProps() {
-        Properties producerProps = new Properties();
-        producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, broker_list);
-        producerProps.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(RETRIES_CONFIG));
-        producerProps.setProperty(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, "300000");
-        producerProps.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
-        producerProps.setProperty(ProducerConfig.LINGER_MS_CONFIG, "3");
-        producerProps.setProperty(ProducerConfig.ACKS_CONFIG, "1");
-
-        return producerProps;
+    public static Properties buildKafkaProps(ParameterTool parameterTool) {
+        Properties props = parameterTool.getProperties();
+        props.put("bootstrap.servers", parameterTool.get(PropertiesConstants.KAFKA_BROKERS, DEFAULT_KAFKA_BROKERS));
+        props.put("zookeeper.connect", parameterTool.get(PropertiesConstants.KAFKA_ZOOKEEPER_CONNECT, DEFAULT_KAFKA_ZOOKEEPER_CONNECT));
+        props.put("group.id", parameterTool.get(PropertiesConstants.KAFKA_GROUP_ID, DEFAULT_KAFKA_GROUP_ID));
+        props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put("auto.offset.reset", "latest");
+        return props;
     }
 
+
+    public static DataStreamSource<MetricEvent> buildSource(StreamExecutionEnvironment env) throws IllegalAccessException {
+        ParameterTool parameter = (ParameterTool) env.getConfig().getGlobalJobParameters();
+        String topic = parameter.getRequired(PropertiesConstants.METRICS_TOPIC);
+        Long time = parameter.getLong(PropertiesConstants.CONSUMER_FROM_TIME, 0L);
+        return buildSource(env, topic, time);
+    }
+
+    /**
+     * @param env
+     * @param topic
+     * @param time  订阅的时间
+     * @return
+     * @throws IllegalAccessException
+     */
+    public static DataStreamSource<MetricEvent> buildSource(StreamExecutionEnvironment env, String topic, Long time) throws IllegalAccessException {
+        ParameterTool parameterTool = (ParameterTool) env.getConfig().getGlobalJobParameters();
+        Properties props = buildKafkaProps(parameterTool);
+        FlinkKafkaConsumer011<MetricEvent> consumer = new FlinkKafkaConsumer011<>(
+                topic,
+                new MetricSchema(),
+                props);
+        //重置offset到time时刻
+        if (time != 0L) {
+            Map<KafkaTopicPartition, Long> partitionOffset = buildOffsetByTime(props, parameterTool, time);
+            consumer.setStartFromSpecificOffsets(partitionOffset);
+        }
+        return env.addSource(consumer);
+    }
+
+    private static Map<KafkaTopicPartition, Long> buildOffsetByTime(Properties props, ParameterTool parameterTool, Long time) {
+        props.setProperty("group.id", "query_time_" + time);
+        KafkaConsumer consumer = new KafkaConsumer(props);
+        List<PartitionInfo> partitionsFor = consumer.partitionsFor(parameterTool.getRequired(PropertiesConstants.METRICS_TOPIC));
+        Map<TopicPartition, Long> partitionInfoLongMap = new HashMap<>();
+        for (PartitionInfo partitionInfo : partitionsFor) {
+            partitionInfoLongMap.put(new TopicPartition(partitionInfo.topic(), partitionInfo.partition()), time);
+        }
+        Map<TopicPartition, OffsetAndTimestamp> offsetResult = consumer.offsetsForTimes(partitionInfoLongMap);
+        Map<KafkaTopicPartition, Long> partitionOffset = new HashMap<>();
+        offsetResult.forEach((key, value) -> partitionOffset.put(new KafkaTopicPartition(key.topic(), key.partition()), value.offset()));
+
+        consumer.close();
+        return partitionOffset;
+    }
 }
