@@ -3,9 +3,14 @@ package flink.sql;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.api.java.tuple.Tuple4;
+import org.apache.flink.api.java.typeutils.TupleTypeInfo;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.java.BatchTableEnvironment;
+
+import static org.apache.flink.table.api.Types.DOUBLE;
+import static org.apache.flink.table.api.Types.STRING;
 
 public class CommonApiTest {
     public static void main(String[] args) throws Exception {
@@ -39,8 +44,26 @@ public class CommonApiTest {
                 .groupBy("cID, cName")
                 .select("cID, cName, revenue.sum AS revSum");
 
+        TupleTypeInfo<Tuple3<String, String, Double>> tupleType = new TupleTypeInfo<>(
+                STRING(),
+                STRING(),
+                DOUBLE());
 
-        revenue.printSchema();
+        DataSet<Tuple3<String, String, Double>> test = tableEnv.toDataSet(revenue, tupleType);
+        test.print();
+
+        System.out.println("-----------------------------------");
+        // compute revenue for all customers from France
+        Table revenue2 = tableEnv.sqlQuery(
+                "SELECT cID, cName, SUM(revenue) AS revSum " +
+                "FROM Orders " +
+                "WHERE cCountry = 'FRANCE' " +
+                "GROUP BY cID, cName"
+        );
+
+        DataSet<Tuple3<String, String, Double>> test2 = tableEnv.toDataSet(revenue2, tupleType);
+        test.print();
+
     }
 
     public static class Order {
