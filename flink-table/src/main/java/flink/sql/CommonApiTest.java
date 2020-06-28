@@ -6,8 +6,11 @@ import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.api.java.tuple.Tuple4;
 import org.apache.flink.api.java.typeutils.TupleTypeInfo;
+import org.apache.flink.table.api.DataTypes;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.java.BatchTableEnvironment;
+import org.apache.flink.table.descriptors.FileSystem;
+import org.apache.flink.table.descriptors.Schema;
 
 import static org.apache.flink.table.api.Types.DOUBLE;
 import static org.apache.flink.table.api.Types.STRING;
@@ -63,6 +66,18 @@ public class CommonApiTest {
 
         DataSet<Tuple3<String, String, Double>> test2 = tableEnv.toDataSet(revenue2, tupleType);
         test.print();
+
+
+        // create an output Table
+//        final Schema schema = new Schema()
+//                .field("a", DataTypes.INT())
+//                .field("b", DataTypes.STRING())
+//                .field("c", DataTypes.DOUBLE());
+//
+//        tableEnv.connect(new FileSystem("/path/to/file"))
+//                .withFormat(new CSV().fieldDelimiter('|').deriveSchema())
+//                .withSchema(schema)
+//                .createTemporaryTable("CsvSinkTable");
 
     }
 

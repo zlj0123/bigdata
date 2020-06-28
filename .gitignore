@@ -1,6 +1,7 @@
 .cache
 .classpath
 .idea
+/.idea/*
 .metadata
 .settings
 .project
