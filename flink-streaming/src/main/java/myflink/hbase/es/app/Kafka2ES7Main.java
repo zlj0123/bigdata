@@ -25,7 +25,7 @@ import java.util.Properties;
 public class Kafka2ES7Main {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(3);
+        env.setParallelism(36);
 
         Properties props = new Properties();
         props.put("bootstrap.servers", "bdp-1.rdc.com:9092");
@@ -38,7 +38,7 @@ public class Kafka2ES7Main {
         DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer011<>(
                 "hbasees-test",  //kafka topic
                 new SimpleStringSchema(),  // String 序列化
-                props)).setParallelism(3);
+                props)).setParallelism(36);
 
         DataStream<FundEvent> fundEventStream = dataStreamSource.map(new MapFunction<String, FundEvent>() {
             @Override
@@ -52,7 +52,7 @@ public class Kafka2ES7Main {
 
         ElasticsearchSink.Builder<FundEvent> esSinkBuilder = new ElasticsearchSink.Builder<>(esAddresses, new ESSinkFunc());
         esSinkBuilder.setBulkFlushMaxActions(bulkSize);
-        fundEventStream.addSink(esSinkBuilder.build()).setParallelism(3);
+        fundEventStream.addSink(esSinkBuilder.build()).setParallelism(36);
 
         env.execute("flink job kafka2es7");
     }

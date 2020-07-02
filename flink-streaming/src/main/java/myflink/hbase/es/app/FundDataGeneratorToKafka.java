@@ -57,7 +57,7 @@ public class FundDataGeneratorToKafka {
         int count = 0;
         Random random = new Random();
         Producer<String, String> producer = new KafkaProducer<>(props);
-        long timeStart = 1435680000000L; //2015-07-01 00:00:00 ----- 1435680000000
+        long timeStart = 1561910400000L; //2019-07-01 00:00:00 ----- 1435680000000
         long timeEnd = 1593532799000L;  //2020-06-30 23:59:59 ----- 1593532799000
         while (timeStart <= timeEnd) {
             //构造好kafkaProducer实例以后，下一步就是构造消息实例。
@@ -138,7 +138,7 @@ public class FundDataGeneratorToKafka {
             event.rationkind = String.valueOf(random.nextInt(5));   //	varchar(1)	快溢通交易
             event.ds = "test";    //
 
-            producer.send(new ProducerRecord<>("hbasees-test", Integer.toString(i), JSON.toJSONString(event)));
+            producer.send(new ProducerRecord<>("hbasees-test", event.requestno, JSON.toJSONString(event)));
             timeStart = timeStart + 5;
         }
     }
