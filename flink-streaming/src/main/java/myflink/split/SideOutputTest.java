@@ -14,7 +14,7 @@ public class SideOutputTest {
         /*为方便测试 这里把并行度设置为1*/
         senv.setParallelism(1);
 
-        DataStream<String> sourceData = senv.readTextFile("/Users/zhanglijun/Documents/Docs/Flink/sideOutputTest.txt");
+        DataStream<String> sourceData = senv.readTextFile("./inout/sideOutputTest.txt");
 
         DataStream<PersonInfo> personStream = sourceData.map(new MapFunction<String, PersonInfo>() {
             @Override
