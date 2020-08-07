@@ -58,7 +58,7 @@ import org.apache.flink.util.Collector;
  * </ul>
  *
  * <p>Usage: <code>ConnectedComponents --vertices &lt;path&gt; --edges &lt;path&gt; --output &lt;path&gt; --iterations &lt;n&gt;</code><br>
- * If no parameters are provided, the program is run with default data from {@link org.apache.flink.examples.java.graph.util.ConnectedComponentsData} and 10 iterations.
+ * If no parameters are provided, the program is run with default data from {@link ConnectedComponentsData} and 10 iterations.
  *
  * <p>This example shows how to use:
  * <ul>

@@ -34,6 +34,10 @@ under the License.
 
     <packaging>jar</packaging>
 
+    <properties>
+        <jcuda.version>10.0.0</jcuda.version>
+    </properties>
+
     <dependencies>
         <!-- core dependencies -->
         <dependency>
@@ -75,7 +79,11 @@ under the License.
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-statebackend-rocksdb_${scala.binary.version}</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-test-utils_${scala.binary.version}</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -92,6 +100,33 @@ under the License.
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients_${scala.binary.version}</artifactId>
+        </dependency>
+
+        <!-- Dependencies for MatrixVectorMul. We exclude native libraries
+        because it is not available in all the operating systems and architectures. Moreover,
+        we also want to enable users to compile and run MatrixVectorMul in different runtime environments.-->
+        <dependency>
+            <groupId>org.jcuda</groupId>
+            <artifactId>jcuda</artifactId>
+            <version>${jcuda.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jcuda</groupId>
+                    <artifactId>jcuda-natives</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jcuda</groupId>
+            <artifactId>jcublas</artifactId>
+            <version>${jcuda.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jcuda</groupId>
+                    <artifactId>jcublas-natives</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

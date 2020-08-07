@@ -57,7 +57,7 @@ import static org.apache.flink.api.java.aggregation.Aggregations.SUM;
  * </ul>
  *
  * <p>Usage: <code>PageRankBasic --pages &lt;path&gt; --links &lt;path&gt; --output &lt;path&gt; --numPages &lt;n&gt; --iterations &lt;n&gt;</code><br>
- * If no parameters are provided, the program is run with default data from {@link org.apache.flink.examples.java.graph.util.PageRankData} and 10 iterations.
+ * If no parameters are provided, the program is run with default data from {@link PageRankData} and 10 iterations.
  *
  * <p>This example shows how to use:
  * <ul>

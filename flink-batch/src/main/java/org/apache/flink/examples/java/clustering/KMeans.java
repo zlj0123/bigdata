@@ -61,7 +61,7 @@ import java.util.Collection;
  * </ul>
  *
  * <p>Usage: <code>KMeans --points &lt;path&gt; --centroids &lt;path&gt; --output &lt;path&gt; --iterations &lt;n&gt;</code><br>
- * If no parameters are provided, the program is run with default data from {@link org.apache.flink.examples.java.clustering.util.KMeansData} and 10 iterations.
+ * If no parameters are provided, the program is run with default data from {@link KMeansData} and 10 iterations.
  *
  * <p>This example shows how to use:
  * <ul>
