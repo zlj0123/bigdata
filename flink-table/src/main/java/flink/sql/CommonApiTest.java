@@ -9,6 +9,7 @@ import org.apache.flink.api.java.typeutils.TupleTypeInfo;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
 
+import static org.apache.flink.table.api.Expressions.$;
 import static org.apache.flink.table.api.Types.DOUBLE;
 import static org.apache.flink.table.api.Types.STRING;
 
@@ -33,8 +34,8 @@ public class CommonApiTest {
             }
         });
 
-        tableEnv.createTemporaryView("Orders", orderDataSet, "cID,cName,revenue,cCountry");
-
+        System.out.println("--------Create a View from a DataStream or DataSet--------");
+        tableEnv.createTemporaryView("Orders", orderDataSet, $("cID"),$("cName"),$("revenue"),$("cCountry"));
 
         // scan registered Orders table
         Table orders = tableEnv.from("Orders");
@@ -52,7 +53,11 @@ public class CommonApiTest {
         DataSet<Tuple3<String, String, Double>> test = tableEnv.toDataSet(revenue, tupleType);
         test.print();
 
-        System.out.println("-----------------------------------");
+        System.out.println("--------Convert a DataStream or DataSet into a Table--------");
+        Table tableFromDataSet = tableEnv.fromDataSet(orderDataSet,$("cID"),$("cName"),$("revenue"),$("cCountry"));
+        tableFromDataSet.filter("cCountry === 'CHINA'").printSchema();
+
+        System.out.println("--------Convert a Table into a DataStream or DataSet--------");
         // compute revenue for all customers from France
         Table revenue2 = tableEnv.sqlQuery(
                 "SELECT cID, cName, SUM(revenue) AS revSum " +
