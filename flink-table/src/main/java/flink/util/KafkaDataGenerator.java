@@ -13,7 +13,8 @@ public class KafkaDataGenerator {
         // 构造一个java.util.Properties对象
         Properties props = new Properties();
         // 指定bootstrap.servers属性。必填，无默认值。用于创建向kafka broker服务器的连接。
-        props.put("bootstrap.servers", "10.20.30.112:9092");
+        //props.put("bootstrap.servers", "10.20.30.112:9092");
+        props.put("bootstrap.servers", "192.168.86.211:9092/kafka");
         // 指定key.serializer属性。必填，无默认值。被发送到broker端的任何消息的格式都必须是字节数组。
         // 因此消息的各个组件都必须首先做序列化，然后才能发送到broker。该参数就是为消息的key做序列化只用的。
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
