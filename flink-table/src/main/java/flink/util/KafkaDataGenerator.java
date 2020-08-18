@@ -14,7 +14,12 @@ public class KafkaDataGenerator {
         Properties props = new Properties();
         // 指定bootstrap.servers属性。必填，无默认值。用于创建向kafka broker服务器的连接。
         //props.put("bootstrap.servers", "10.20.30.112:9092");
-        props.put("bootstrap.servers", "192.168.86.211:9092/kafka");
+        if(args.length == 0){
+            System.out.print("请指定bootstrap.servers的值");
+            System.exit(0);
+        }else {
+            props.put("bootstrap.servers", args[0]);
+        }
         // 指定key.serializer属性。必填，无默认值。被发送到broker端的任何消息的格式都必须是字节数组。
         // 因此消息的各个组件都必须首先做序列化，然后才能发送到broker。该参数就是为消息的key做序列化只用的。
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -47,7 +52,6 @@ public class KafkaDataGenerator {
         //producer发送请求给broker后，broker需要在规定时间范围内将处理结果返还给producer。默认30s
         //props.put("request.timeout.ms", 60000);
         //props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 60000);
-
 
         // 使用上面创建的Properties对象构造KafkaProducer对象
         //如果采用这种方式创建producer，那么就不需要显示的在Properties中指定key和value序列化类了呢。
