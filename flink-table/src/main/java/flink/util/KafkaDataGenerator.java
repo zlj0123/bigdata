@@ -15,7 +15,8 @@ public class KafkaDataGenerator {
         // 指定bootstrap.servers属性。必填，无默认值。用于创建向kafka broker服务器的连接。
         //props.put("bootstrap.servers", "10.20.30.112:9092");
         if(args.length == 0){
-            System.out.print("请指定bootstrap.servers的值");
+            System.out.print("请指定bootstrap.servers的值")
+            ;
             System.exit(0);
         }else {
             props.put("bootstrap.servers", args[0]);
