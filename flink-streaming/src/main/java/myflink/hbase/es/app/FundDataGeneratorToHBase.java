@@ -22,6 +22,11 @@ public class FundDataGeneratorToHBase {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
+        if (args.length == 0){
+            System.out.println("请输入开始日期的Unix时间 - 毫秒");
+            System.exit(0);
+        }
+
         Configuration configuration;
         Connection connection = null;
         String taskNumber = null;
@@ -39,7 +44,7 @@ public class FundDataGeneratorToHBase {
         table = connection.getTable(tableName);
 
         Random random = new Random();
-        long timeStart = 1561910400000L; //2019-07-01 00:00:00 ----- 1435680000000
+        long timeStart = Long.valueOf(args[0]); //2019-07-01 00:00:00 ----- 1435680000000
         long timeEnd = 1593532799000L;  //2020-06-30 23:59:59 ----- 1593532799000
 
         long count = 0L;
@@ -242,8 +247,15 @@ public class FundDataGeneratorToHBase {
             puts.add(put);
             count++;
 
-            if (count%1000 == 0){
+            if (count%2000 == 0){
                 table.put(puts);
+                puts.clear();
+
+                if (count%100000 == 0){
+                    Date tmp = new Date(timeStart);
+                    System.out.println("数据已经插入到:" + tmp);
+                    System.out.println("总共插入的记录条数:" + count);
+                }
             }
         }
     }
