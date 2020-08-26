@@ -131,7 +131,8 @@ public class FundDataGeneratorToHBase {
             event.rationkind = String.valueOf(random.nextInt(5));   //	varchar(1)	快溢通交易
             event.ds = "test";    //
 
-            timeStart = timeStart + 10;
+            //模拟每天2100万数据
+            timeStart = timeStart + 4;
 
             Put put = new Put(Bytes.toBytes(sdf.format(tmpDate) + new StringBuilder(event.cserialno).reverse().toString()));
 
