@@ -1,4 +1,4 @@
-package myflink.hbase.es.app;
+package myflink.test;
 
 import sun.misc.BASE64Decoder;
 
