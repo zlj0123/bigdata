@@ -5,6 +5,7 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.DataStreamSink;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class KeyedProcessFunctionMain {
@@ -13,7 +14,7 @@ public class KeyedProcessFunctionMain {
         evn.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
         /*指定数据源 从socket的9000端口接收数据，先进行了不合法数据的过滤*/
-        DataStream<String> sourceDS = evn.socketTextStream("localhost", 9099)
+        DataStream<String> sourceDS = evn.socketTextStream("10.20.30.112", 9099)
                 .filter(new FilterFunction<String>() {
                     @Override
                     public boolean filter(String line) throws Exception {
@@ -38,7 +39,7 @@ public class KeyedProcessFunctionMain {
         });
 
         // apply the process function onto a keyed stream
-        DataStream<Tuple2<String, Long>> result = stream
+        DataStreamSink<Tuple2<String, Long>> result = stream
                 .keyBy(value -> value.f0).process(new CountWithTimeoutFunction()).print();
 
         evn.execute("KeyedProcessFunction Testing");

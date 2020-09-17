@@ -2,14 +2,13 @@ package myflink.func.process;
 
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
-import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
 import org.apache.flink.util.Collector;
 
 public class CountWithTimeoutFunction
-        extends KeyedProcessFunction<Tuple, Tuple2<String, String>, Tuple2<String, Long>> {
+        extends KeyedProcessFunction<String, Tuple2<String, String>, Tuple2<String, Long>> {
 
     /**
      * The state that is maintained by this process function
@@ -44,7 +43,7 @@ public class CountWithTimeoutFunction
         state.update(current);
 
         // schedule the next timer 60 seconds from the current event time
-        ctx.timerService().registerEventTimeTimer(current.lastModified + 60000);
+        ctx.timerService().registerEventTimeTimer(current.lastModified + 30000);
     }
 
     @Override
@@ -57,7 +56,7 @@ public class CountWithTimeoutFunction
         CountWithTimestamp result = state.value();
 
         // check if this is an outdated timer or the latest timer
-        if (timestamp == result.lastModified + 60000) {
+        if (timestamp == result.lastModified + 30000) {
             // emit the state on timeout
             out.collect(new Tuple2<String, Long>(result.key, result.count));
         }
