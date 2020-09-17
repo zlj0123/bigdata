@@ -37,13 +37,14 @@ public class CountWithTimeoutFunction
         current.count++;
 
         // set the state's timestamp to the record's assigned event time timestamp
-        current.lastModified = ctx.timestamp();
+        current.lastModified = ctx.timerService().currentProcessingTime();//ctx.timestamp();
 
         // write the state back
         state.update(current);
 
         // schedule the next timer 60 seconds from the current event time
-        ctx.timerService().registerEventTimeTimer(current.lastModified + 30000);
+        //ctx.timerService().registerEventTimeTimer(current.lastModified + 30000);
+        ctx.timerService().registerProcessingTimeTimer(current.lastModified + 30000);
     }
 
     @Override

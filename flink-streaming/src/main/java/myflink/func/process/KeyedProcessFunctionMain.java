@@ -11,7 +11,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 public class KeyedProcessFunctionMain {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment evn = StreamExecutionEnvironment.getExecutionEnvironment();
-        evn.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
+        //evn.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
         /*指定数据源 从socket的9000端口接收数据，先进行了不合法数据的过滤*/
         DataStream<String> sourceDS = evn.socketTextStream("10.20.30.112", 9099)
