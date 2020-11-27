@@ -83,5 +83,13 @@ under the License.
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba.ververica</groupId>
+			<artifactId>flink-connector-mysql-cdc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.ververica</groupId>
+			<artifactId>flink-connector-postgres-cdc</artifactId>
+		</dependency>
 	</dependencies>
 </project>

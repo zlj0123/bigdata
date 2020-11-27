@@ -39,13 +39,14 @@ public class AnalysisHotItemSQL {
         });
 
         // 创建临时表
-        tableEnv.createTemporaryView("UserBehavior", dataStream, "itemId,behavior,timestamp.rowtime as ts");
+        tableEnv.createTemporaryView("UserBehavior", dataStream, $("userId"), $("itemId"), $("categoryId"), $("behavior"), $("timestamp").rowtime().as("ts"));
 
         String sql = ("select * from (select *,row_number() over(partition by windowEnd order by cnt desc) as row_num from(select itemId, count(itemId) as cnt, hop_end(ts, interval '5' minute, interval '1' hour) as windowEnd from " +
                 "UserBehavior where behavior = 'pv' group by itemId, hop(ts, interval '5' minute, interval '1' hour))) where row_num <= 5").trim();
 
         Table topNResultTable = tableEnv.sqlQuery(sql);
-        DataStream<Tuple2<Boolean, Row>> tuple2DataStream = tableEnv.toRetractStream(topNResultTable, Row.class);
+        //DataStream<Tuple2<Boolean, Row>> tuple2DataStream = tableEnv.toRetractStream(topNResultTable, Row.class);
+        DataStream<Row> tuple2DataStream = tableEnv.toAppendStream(topNResultTable, Row.class);
         tuple2DataStream.print();
 
         fsEnv.execute("Top PV");
