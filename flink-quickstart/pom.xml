@@ -24,7 +24,7 @@ under the License.
         <groupId>io.ibigdata.flink</groupId>
         <artifactId>bigdata-flink</artifactId>
         <version>1.0.0</version>
-        <relativePath>..</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>flink-quickstart</artifactId>

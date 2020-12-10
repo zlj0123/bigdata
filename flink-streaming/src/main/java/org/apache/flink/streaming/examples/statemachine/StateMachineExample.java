@@ -29,7 +29,7 @@ import org.apache.flink.runtime.state.filesystem.FsStateBackend;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.examples.statemachine.dfa.State;
 import org.apache.flink.streaming.examples.statemachine.event.Alert;
 import org.apache.flink.streaming.examples.statemachine.event.Event;
@@ -82,7 +82,7 @@ public class StateMachineExample {
 			Properties kafkaProps = new Properties();
 			kafkaProps.setProperty("bootstrap.servers", brokers);
 
-			FlinkKafkaConsumer011<Event> kafka = new FlinkKafkaConsumer011<>(kafkaTopic, new EventDeSerializer(), kafkaProps);
+			FlinkKafkaConsumer<Event> kafka = new FlinkKafkaConsumer<>(kafkaTopic, new EventDeSerializer(), kafkaProps);
 			kafka.setStartFromLatest();
 			kafka.setCommitOffsetsOnCheckpoints(false);
 			source = kafka;

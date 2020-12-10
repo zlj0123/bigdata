@@ -8,7 +8,7 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HConstants;
 import org.apache.hadoop.hbase.TableName;
@@ -34,7 +34,7 @@ public class Kafka2HBaseMain {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("auto.offset.reset", "latest");
 
-        DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer011<>(
+        DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer<>(
                 "hbasees-test",  //kafka topic
                 new SimpleStringSchema(),  // String 序列化
                 props)).setParallelism(36);

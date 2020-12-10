@@ -10,7 +10,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.elasticsearch.ElasticsearchSinkFunction;
 import org.apache.flink.streaming.connectors.elasticsearch.RequestIndexer;
 import org.apache.flink.streaming.connectors.elasticsearch6.ElasticsearchSink;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -35,7 +35,7 @@ public class Kafka2ES7Main {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("auto.offset.reset", "latest");
 
-        DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer011<>(
+        DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer<>(
                 "hbasees-test",  //kafka topic
                 new SimpleStringSchema(),  // String 序列化
                 props)).setParallelism(36);

@@ -7,7 +7,7 @@ import myflink.schema.MetricSchema;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.internals.KafkaTopicPartition;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
@@ -71,7 +71,7 @@ public class KafkaConfigUtil {
     public static DataStreamSource<MetricEvent> buildSource(StreamExecutionEnvironment env, String topic, Long time) throws IllegalAccessException {
         ParameterTool parameterTool = (ParameterTool) env.getConfig().getGlobalJobParameters();
         Properties props = buildKafkaProps(parameterTool);
-        FlinkKafkaConsumer011<MetricEvent> consumer = new FlinkKafkaConsumer011<>(
+        FlinkKafkaConsumer<MetricEvent> consumer = new FlinkKafkaConsumer<>(
                 topic,
                 new MetricSchema(),
                 props);

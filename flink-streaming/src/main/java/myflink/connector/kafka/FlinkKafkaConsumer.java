@@ -3,7 +3,6 @@ package myflink.connector.kafka;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
 
 import java.util.Properties;
 
@@ -19,7 +18,7 @@ public class FlinkKafkaConsumer {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("auto.offset.reset", "latest");
 
-        DataStreamSource<String> dataStreamSource = env.addSource(new FlinkKafkaConsumer011<>(
+        DataStreamSource<String> dataStreamSource = env.addSource(new org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer<>(
                 "metric",  //kafka topic
                 new SimpleStringSchema(),  // String 序列化
                 props)).setParallelism(1);

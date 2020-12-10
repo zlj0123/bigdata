@@ -26,7 +26,7 @@ under the License.
         <groupId>io.ibigdata.flink</groupId>
         <artifactId>bigdata-flink</artifactId>
         <version>1.0.0</version>
-        <relativePath>..</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>flink-table</artifactId>
@@ -57,7 +57,7 @@ under the License.
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
-            <version>1.11.2</version>
+            <version>1.12.0</version>
             <type>test-jar</type>
         </dependency>
         <dependency>

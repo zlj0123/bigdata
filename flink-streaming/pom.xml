@@ -26,7 +26,7 @@ under the License.
         <groupId>io.ibigdata.flink</groupId>
         <artifactId>bigdata-flink</artifactId>
         <version>1.0.0</version>
-        <relativePath>..</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>flink-streaming</artifactId>
@@ -50,7 +50,7 @@ under the License.
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka-0.11_${scala.binary.version}</artifactId>
+            <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
