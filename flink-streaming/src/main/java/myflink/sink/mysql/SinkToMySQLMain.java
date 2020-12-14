@@ -1,4 +1,4 @@
-package myflink.sink;
+package myflink.sink.mysql;
 
 import com.alibaba.fastjson.JSON;
 import myflink.source.Student;

@@ -1,4 +1,4 @@
-package myflink.sink;
+package myflink.sink.tidb;
 
 import myflink.source.Student;
 import org.apache.flink.configuration.Configuration;
@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class SinkToMySQL extends RichSinkFunction<Student> {
+public class SinkToTiDB extends RichSinkFunction<Student> {
     PreparedStatement ps;
     private Connection connection;
 
@@ -16,9 +16,9 @@ public class SinkToMySQL extends RichSinkFunction<Student> {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bigdata?useUnicode=true&characterEncoding=UTF-8", "root", "Zlj840123");
+            con = DriverManager.getConnection("jdbc:mysql://10.20.145.29:4000/bigdata?useUnicode=true&characterEncoding=UTF-8", "root", "123456");
         } catch (Exception e) {
-            System.out.println("-----------mysql get connection has exception , msg = " + e.getMessage());
+            System.out.println("-----------TiDB get connection has exception , msg = " + e.getMessage());
         }
         return con;
     }
