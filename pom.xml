@@ -318,6 +318,11 @@ under the License.
                 <version>${flinkcdc.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.ververica</groupId>
+                <artifactId>flink-format-changelog-json</artifactId>
+                <version>${flinkcdc.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-orc_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
