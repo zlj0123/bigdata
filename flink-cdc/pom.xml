@@ -107,6 +107,10 @@ under the License.
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
             <artifactId>flink-orc_${scala.binary.version}</artifactId>
         </dependency>
         <dependency>

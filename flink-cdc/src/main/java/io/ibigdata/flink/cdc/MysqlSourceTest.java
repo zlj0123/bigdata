@@ -35,12 +35,12 @@ public class MysqlSourceTest {
                         " 'username' = 'root',\n" +
                         " 'password' = 'admin@123',\n" +
                         " 'database-name' = 'test2',\n" +
-                        " 'table-name' = 'test2_dest'\n" +
-                        ");"
+                        " 'table-name' = 'flink_cdc_test'\n" +
+                        ")"
         );
 
-        Table t = tEnv.sqlQuery("ELECT id, age,UPPER(address) FROM mysql_binlog");
-        tEnv.toAppendStream(t, Row.class).print();
+        Table t = tEnv.sqlQuery("SELECT id, age,UPPER(address) FROM mysql_binlog");
+        tEnv.toRetractStream(t, Row.class).print();
         env.execute();
     }
 }
