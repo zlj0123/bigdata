@@ -41,7 +41,6 @@ public class MysqlSourceTest {
 
         Table t = tEnv.sqlQuery("ELECT id, age,UPPER(address) FROM mysql_binlog");
         tEnv.toAppendStream(t, Row.class).print();
-
         env.execute();
     }
 }
