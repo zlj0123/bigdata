@@ -308,12 +308,12 @@ under the License.
                 <version>8.0.18</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.ververica</groupId>
+                <groupId>com.ververica</groupId>
                 <artifactId>flink-connector-mysql-cdc</artifactId>
                 <version>${flinkcdc.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.ververica</groupId>
+                <groupId>com.ververica</groupId>
                 <artifactId>flink-connector-postgres-cdc</artifactId>
                 <version>${flinkcdc.version}</version>
             </dependency>

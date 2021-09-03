@@ -94,11 +94,11 @@ under the License.
             <artifactId>fastjson</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.ververica</groupId>
+            <groupId>com.ververica</groupId>
             <artifactId>flink-connector-mysql-cdc</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.ververica</groupId>
+            <groupId>com.ververica</groupId>
             <artifactId>flink-connector-postgres-cdc</artifactId>
         </dependency>
         <dependency>

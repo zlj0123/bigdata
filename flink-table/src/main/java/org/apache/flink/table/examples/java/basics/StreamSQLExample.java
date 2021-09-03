@@ -61,7 +61,7 @@ public class StreamSQLExample {
 					.useBlinkPlanner()
 					.build();
 			tEnv = StreamTableEnvironment.create(env, settings);
-		} else if (Objects.equals(planner, "flink")) {	// use flink planner in streaming mode
+		} else if (Objects.equals(planner, "io/ibigdata/flink")) {	// use flink planner in streaming mode
 			EnvironmentSettings settings = EnvironmentSettings.newInstance()
 					.inStreamingMode()
 					.useOldPlanner()
