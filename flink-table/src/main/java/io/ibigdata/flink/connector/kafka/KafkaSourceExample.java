@@ -37,7 +37,6 @@ public class KafkaSourceExample {
 
         env.enableCheckpointing(30000);
         env.fromSource(source, WatermarkStrategy.forMonotonousTimestamps(), "Kafka Source").setParallelism(4).print().setParallelism(4); // use parallelism 1 for sink to keep message ordering
-
         env.execute();
     }
 }
