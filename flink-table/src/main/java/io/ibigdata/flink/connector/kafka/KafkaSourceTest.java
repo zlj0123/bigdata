@@ -13,7 +13,7 @@ public class KafkaSourceTest {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
 
-        env.setParallelism(1);
+        env.setParallelism(4);
 
         EnvironmentSettings settings = EnvironmentSettings
                 .newInstance()
@@ -21,6 +21,7 @@ public class KafkaSourceTest {
                 .inStreamingMode().build();
 
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, settings);
+        env.enableCheckpointing(30000);
 
         tEnv.executeSql(
                 "CREATE TABLE kafka_table (\n" +
