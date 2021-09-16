@@ -13,7 +13,8 @@ public class MysqlSourceTest {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
 
-        env.setParallelism(1);
+        env.setParallelism(4);
+        env.enableCheckpointing(30000);
 
         EnvironmentSettings settings = EnvironmentSettings
                 .newInstance()
