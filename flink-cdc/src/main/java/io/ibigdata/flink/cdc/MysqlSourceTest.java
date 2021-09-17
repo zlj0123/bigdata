@@ -33,10 +33,11 @@ public class MysqlSourceTest {
                         " 'connector' = 'mysql-cdc',\n" +
                         " 'hostname' = '10.20.30.113',\n" +
                         " 'port' = '33061',\n" +
+                        " 'scan.incremental.snapshot.chunk.size' = '10',\n" +
                         " 'username' = 'root',\n" +
                         " 'password' = 'admin@123',\n" +
                         " 'database-name' = 'test2',\n" +
-                        " 'table-name' = 'flink_cdc_test'\n" +
+                        " 'table-name' = 'flink_cdc_test2'\n" +
                         ")"
         );
 

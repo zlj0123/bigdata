@@ -97,10 +97,10 @@ under the License.
             <groupId>com.ververica</groupId>
             <artifactId>flink-connector-mysql-cdc</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.ververica</groupId>
-            <artifactId>flink-connector-postgres-cdc</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.ververica</groupId>-->
+<!--            <artifactId>flink-connector-postgres-cdc</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.ververica</groupId>
             <artifactId>flink-format-changelog-json</artifactId>
