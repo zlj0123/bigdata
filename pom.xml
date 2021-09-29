@@ -41,14 +41,14 @@ under the License.
     <properties>
         <hadoop.version>3.2.1</hadoop.version>
         <zookeeper.version>3.5.6</zookeeper.version>
-        <flink.version>1.13.2</flink.version>
+        <flink.version>1.14.0</flink.version>
         <elasticsearch.version>7.8.0</elasticsearch.version>
         <kafka.version>2.3.1</kafka.version>
         <scala.version>2.11.12</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <flinkcdc.version>2.0.1</flinkcdc.version>
+        <flinkcdc.version>2.0.2</flinkcdc.version>
         <akka.version>2.5.21</akka.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
