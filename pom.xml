@@ -197,7 +197,7 @@ under the License.
             <dependency>
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-shaded-guava</artifactId>
-                <version>18.0-7.0</version>
+                <version>30.1.1-jre-14.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.flink</groupId>
@@ -382,6 +382,11 @@ under the License.
                 <artifactId>akka-testkit_${scala.binary.version}</artifactId>
                 <version>${akka.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.11.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
