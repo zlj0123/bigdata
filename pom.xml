@@ -34,7 +34,6 @@ under the License.
         <module>flink-batch</module>
         <module>flink-streaming</module>
         <module>flink-table</module>
-		<module>flink-training</module>
 		<module>flink-cdc</module>
     </modules>
 

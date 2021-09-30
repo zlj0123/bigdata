@@ -11,16 +11,10 @@ public class MysqlSourceTest {
 
     public static void main(String[] args) throws Exception {
 
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
-
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(3);
         env.enableCheckpointing(30000);
-
-        EnvironmentSettings settings = EnvironmentSettings
-                .newInstance()
-                .inStreamingMode().build();
-
-        StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, settings);
+        StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
 
         tEnv.executeSql(
                 "CREATE TABLE mysql_binlog (\n" +
@@ -57,7 +51,6 @@ public class MysqlSourceTest {
 
 //        Table t = tEnv.sqlQuery("SELECT id, age,UPPER(address) FROM mysql_binlog");
 //        tEnv.toRetractStream(t, Row.class).print();
-        tEnv.executeSql("insert into mysql_binlog2 select * from mysql_binlog");
-        env.execute();
+        tEnv.executeSql("insert into mysql_binlog2 select * from mysql_binlog").print();
     }
 }
