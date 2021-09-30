@@ -10,6 +10,7 @@ public class MysqlSourceTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(3);
         env.enableCheckpointing(30000);
+
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
 
         tEnv.executeSql(
