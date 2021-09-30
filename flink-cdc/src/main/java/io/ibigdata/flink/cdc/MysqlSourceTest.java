@@ -18,7 +18,6 @@ public class MysqlSourceTest {
 
         EnvironmentSettings settings = EnvironmentSettings
                 .newInstance()
-                .useBlinkPlanner()
                 .inStreamingMode().build();
 
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, settings);
