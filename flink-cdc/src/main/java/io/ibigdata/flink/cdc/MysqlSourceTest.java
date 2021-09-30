@@ -8,6 +8,7 @@ public class MysqlSourceTest {
     public static void main(String[] args) throws Exception {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        //shezhi
         env.setParallelism(3);
         env.enableCheckpointing(30000);
 
