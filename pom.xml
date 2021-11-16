@@ -34,7 +34,7 @@ under the License.
         <module>flink-batch</module>
         <module>flink-streaming</module>
         <module>flink-table</module>
-		<module>flink-cdc</module>
+        <module>flink-cdc</module>
     </modules>
 
     <properties>
@@ -47,7 +47,7 @@ under the License.
         <scala.binary.version>2.11</scala.binary.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <flinkcdc.version>2.0.2</flinkcdc.version>
+        <flinkcdc.version>2.1.0</flinkcdc.version>
         <akka.version>2.5.21</akka.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -227,7 +227,7 @@ under the License.
             <dependency>
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-hbase_${scala.binary.version}</artifactId>
-<!--                <version>${flink.version}</version>-->
+                <!--                <version>${flink.version}</version>-->
                 <version>1.10.1</version>
             </dependency>
             <dependency>
@@ -299,7 +299,7 @@ under the License.
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.18</version>
+                <version>8.0.20</version>
             </dependency>
             <dependency>
                 <groupId>com.ververica</groupId>
@@ -309,6 +309,11 @@ under the License.
             <dependency>
                 <groupId>com.ververica</groupId>
                 <artifactId>flink-connector-postgres-cdc</artifactId>
+                <version>${flinkcdc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ververica</groupId>
+                <artifactId>flink-connector-oracle-cdc</artifactId>
                 <version>${flinkcdc.version}</version>
             </dependency>
             <dependency>

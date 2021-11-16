@@ -10,7 +10,7 @@ public class MysqlSourceTest {
     public static void main(String[] args) throws Exception {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        env.setParallelism(3);
+        env.setParallelism(4);
         env.enableCheckpointing(30000);
 
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
@@ -23,13 +23,13 @@ public class MysqlSourceTest {
                         " PRIMARY KEY(id) NOT ENFORCED\n" +
                         ") WITH (\n" +
                         " 'connector' = 'mysql-cdc',\n" +
-                        " 'hostname' = 'localhost',\n" +
-                        " 'port' = '3306',\n" +
-                        " 'scan.incremental.snapshot.chunk.size' = '8',\n" +
+                        " 'hostname' = '10.20.30.113',\n" +
+                        " 'port' = '33061',\n" +
+                        " 'scan.incremental.snapshot.chunk.size' = '40',\n" +
                         " 'username' = 'root',\n" +
-                        " 'password' = 'Zlj840123',\n" +
-                        " 'database-name' = 'zhanglijun',\n" +
-                        " 'table-name' = 'flink_cdc_test'\n" +
+                        " 'password' = 'admin@123',\n" +
+                        " 'database-name' = 'test2',\n" +
+                        " 'table-name' = 'flink_cdc_test2'\n" +
                         ")"
         );
 
