@@ -29,7 +29,10 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.apache.flink.table.api.Expressions.*;
+import static org.apache.flink.table.api.Expressions.$;
+import static org.apache.flink.table.api.Expressions.call;
+import static org.apache.flink.table.api.Expressions.range;
+import static org.apache.flink.table.api.Expressions.withColumns;
 
 /**
  * Example for getting started with the Table & SQL API.

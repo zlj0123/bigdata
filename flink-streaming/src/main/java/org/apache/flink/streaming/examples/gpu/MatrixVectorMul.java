@@ -18,10 +18,6 @@
 
 package org.apache.flink.streaming.examples.gpu;
 
-import jcuda.Pointer;
-import jcuda.Sizeof;
-import jcuda.jcublas.JCublas;
-import jcuda.runtime.JCuda;
 import org.apache.flink.api.common.externalresource.ExternalResourceInfo;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
@@ -34,7 +30,16 @@ import org.apache.flink.streaming.api.functions.sink.filesystem.StreamingFileSin
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
 import org.apache.flink.util.Preconditions;
 
-import java.util.*;
+import jcuda.Pointer;
+import jcuda.Sizeof;
+import jcuda.jcublas.JCublas;
+import jcuda.runtime.JCuda;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Implements the matrix-vector multiplication program that shows how to use GPU resources in Flink.

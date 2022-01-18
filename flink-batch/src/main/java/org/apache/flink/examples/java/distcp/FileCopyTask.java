@@ -18,8 +18,9 @@
 
 package org.apache.flink.examples.java.distcp;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.core.fs.Path;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 

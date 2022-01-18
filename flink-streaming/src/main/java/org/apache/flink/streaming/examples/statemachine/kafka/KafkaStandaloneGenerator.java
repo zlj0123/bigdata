@@ -21,6 +21,7 @@ package org.apache.flink.streaming.examples.statemachine.kafka;
 import org.apache.flink.streaming.examples.statemachine.event.Event;
 import org.apache.flink.streaming.examples.statemachine.generator.StandaloneThreadedGenerator;
 import org.apache.flink.util.Collector;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;

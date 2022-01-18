@@ -7,10 +7,13 @@ import java.util.Date;
 
 public class DateFormatTest {
     public static void main(String[] args) throws ParseException {
-        DateFormat format = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
-        Date date = format.parse("20200609 12:20:50");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = format.format(System.currentTimeMillis());
 
-        System.out.println(date);
+        System.out.println(dateStr);
+
+        System.out.println((char)('\u0014'));
+        System.out.println(String.valueOf('\u0014').length());
     }
 
 }
