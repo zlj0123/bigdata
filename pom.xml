@@ -22,12 +22,12 @@ under the License.
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.ibigdata.flink</groupId>
-    <artifactId>bigdata-flink</artifactId>
-    <name>bigdata-flink</name>
+    <groupId>io.ibigdata</groupId>
+    <artifactId>bigdata</artifactId>
+    <name>bigdata</name>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <description>flink study</description>
+    <description>bigdata study</description>
 
     <modules>
         <module>flink-quickstart</module>
@@ -35,6 +35,7 @@ under the License.
         <module>flink-streaming</module>
         <module>flink-table</module>
         <module>flink-cdc</module>
+        <module>hadoop-hdfs</module>
     </modules>
 
     <properties>

@@ -21,8 +21,8 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.ibigdata.flink</groupId>
-        <artifactId>bigdata-flink</artifactId>
+        <groupId>io.ibigdata</groupId>
+        <artifactId>bigdata</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>

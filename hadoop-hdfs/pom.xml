@@ -29,28 +29,26 @@ under the License.
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>flink-batch</artifactId>
-    <name>flink-batch</name>
+    <artifactId>hadoop-hdfs</artifactId>
+    <name>hdoop-hdfs</name>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-java</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-clients_${scala.binary.version}</artifactId>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-runtime</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-yarn-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
         </dependency>
     </dependencies>
 
