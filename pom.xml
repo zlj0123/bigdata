@@ -48,7 +48,7 @@ under the License.
         <scala.binary.version>2.11</scala.binary.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <flinkcdc.version>2.1.1</flinkcdc.version>
+        <flinkcdc.version>2.2.0</flinkcdc.version>
         <akka.version>2.5.21</akka.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
