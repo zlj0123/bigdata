@@ -41,7 +41,7 @@ under the License.
     <properties>
         <hadoop.version>3.3.2</hadoop.version>
         <zookeeper.version>3.5.6</zookeeper.version>
-        <flink.version>1.14.3</flink.version>
+        <flink.version>1.14.4</flink.version>
         <elasticsearch.version>7.8.0</elasticsearch.version>
         <kafka.version>3.1.0</kafka.version>
         <scala.version>2.11.12</scala.version>
