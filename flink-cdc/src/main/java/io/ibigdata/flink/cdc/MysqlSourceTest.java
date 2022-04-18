@@ -11,7 +11,7 @@ public class MysqlSourceTest {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
 
-        env.setParallelism(4);
+        env.setParallelism(1);
         //env.enableCheckpointing(3000);
 
         EnvironmentSettings settings = EnvironmentSettings
@@ -35,7 +35,6 @@ public class MysqlSourceTest {
                 "                'password' = 'Zlj840123',\n" +
                 "                'database-name' = 'zhanglijun',\n" +
                 "                'table-name' = 'products',\n" +
-                "                'server-id' = '123456789',\n" +
                 "                'scan.startup.mode' = 'initial'\n" +
                 "        )"
         );
