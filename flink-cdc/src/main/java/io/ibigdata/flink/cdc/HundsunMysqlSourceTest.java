@@ -31,8 +31,8 @@ public class HundsunMysqlSourceTest {
                         " 'port' = '33061',\n" +
                         " 'username' = 'root',\n" +
                         " 'password' = 'admin@123',\n" +
-                        " 'database-name' = 'test2',\n" +
-                        " 'table-name' = 'flink_cdc_test',\n" +
+                        " 'database-name' = 'zhanglijun',\n" +
+                        " 'table-name' = 'flink_cdc_source',\n" +
                         " 'server-id' = '123456789',\n" +
                         " 'scan.startup.mode' = 'initial'\n" +
                         ")"
@@ -46,15 +46,17 @@ public class HundsunMysqlSourceTest {
                         " PRIMARY KEY(id) NOT ENFORCED\n" +
                         ") WITH (\n" +
                         " 'connector' = 'jdbc',\n" +
-                        " 'url' = 'jdbc:mysql://10.20.30.113:33061/test2',\n" +
+                        " 'url' = 'jdbc:mysql://10.20.30.113:33061/zhanglijun',\n" +
                         " 'username' = 'root',\n" +
                         " 'password' = 'admin@123',\n" +
-                        " 'table-name' = 'flink_cdc_test2'\n" +
+                        " 'sink.buffer-flush.max-rows' = '1',\n" +
+                        " 'sink.buffer-flush.interval' = '1s',\n" +
+                        " 'table-name' = 'flink_cdc_sink'\n" +
                         ")"
         );
 
-        tEnv.executeSql("SELECT id, age,UPPER(address) FROM mysql_binlog").print();
-        //tEnv.toRetractStream(t, Row.class).print();
+        //tEnv.executeSql("SELECT id, age,UPPER(address) FROM mysql_binlog").print();
+
         tEnv.executeSql("insert into mysql_binlog2 select * from mysql_binlog").print();
         env.execute();
     }
