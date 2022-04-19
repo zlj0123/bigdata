@@ -54,6 +54,7 @@ public class MysqlSourceTest {
                         ")"
         );
 
+        // long task
         //tEnv.executeSql("SELECT id, age,UPPER(address) FROM mysql_binlog").print();
 
         tEnv.executeSql("insert into mysql_binlog2 select * from mysql_binlog").print();
