@@ -58,7 +58,7 @@ public class ArgoDBTest {
 
     public static void test3() throws SQLException, ClassNotFoundException{
         Class.forName("org.apache.hive.jdbc.HiveDriver");
-        String jdbcURL = "jdbc:transwarp2://10.20.149.60:31943/default";
+        String jdbcURL = "jdbc:hive2://10.20.149.60:31943/default";
         Connection conn = DriverManager.getConnection(jdbcURL,"hive","123456");
 
         Statement stmt = conn.createStatement();
