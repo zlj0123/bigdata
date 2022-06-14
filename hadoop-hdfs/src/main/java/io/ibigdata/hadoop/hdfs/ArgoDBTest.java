@@ -64,7 +64,6 @@ public class ArgoDBTest {
         Statement stmt = conn.createStatement();
 
         //stmt.executeUpdate( "delete from user_info_t_p" );
-
         //stmt.executeUpdate( "set hive.crud.dynamic.partition=true" );
         long startTime = System.currentTimeMillis();
         stmt.executeUpdate( "insert into user_info_t_p values(1,'zhangsan',10,'20220220')" );
