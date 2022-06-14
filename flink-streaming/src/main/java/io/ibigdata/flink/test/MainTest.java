@@ -1,12 +1,8 @@
 package io.ibigdata.flink.test;
 
-import sun.misc.BASE64Decoder;
-
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
 import java.util.Date;
 import java.util.TimeZone;
 

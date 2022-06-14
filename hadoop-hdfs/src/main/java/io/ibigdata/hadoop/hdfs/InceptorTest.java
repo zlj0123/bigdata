@@ -2,7 +2,7 @@ package io.ibigdata.hadoop.hdfs;
 
 import java.sql.*;
 
-public class ArgoDBTest {
+public class InceptorTest {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         test3();
     }
@@ -58,32 +58,10 @@ public class ArgoDBTest {
 
     public static void test3() throws SQLException, ClassNotFoundException{
         Class.forName("org.apache.hive.jdbc.HiveDriver");
-        String jdbcURL = "jdbc:transwarp2://10.20.149.60:31943/default";
-        Connection conn = DriverManager.getConnection(jdbcURL,"hive","123456");
+        String jdbcURL = "jdbc:hive2://10.20.149.60:32306/default";
+        Connection conn = DriverManager.getConnection(jdbcURL,"hive","hive");
 
         Statement stmt = conn.createStatement();
-
-        //stmt.executeUpdate( "delete from user_info_t_p" );
-
-        //stmt.executeUpdate( "set hive.crud.dynamic.partition=true" );
         long startTime = System.currentTimeMillis();
-        stmt.executeUpdate( "insert into user_info_t_p values(1,'zhangsan',10,'20220220')" );
-
-        stmt.executeUpdate( "insert into user_info_t_p partition (dt='20220220') values(1,'zhangsan',10)" );
-        stmt.executeUpdate( "insert into user_info_t_p partition (dt='20220220') values(2,'lisi',20)" );
-        stmt.executeUpdate( "insert into user_info_t_p partition (dt='20220220') values(3,'lisi',20)" );
-        stmt.executeUpdate( "insert into user_info_t_p partition (dt='20220220') values(4,'lisi',20)" );
-        stmt.executeUpdate( "insert into user_info_t_p partition (dt='20220220') values(5,'lisi',20)" );
-        System.out.println("spent time: " + (System.currentTimeMillis() - startTime) + "ms");
-
-        ResultSet rs = stmt.executeQuery( "select * from user_info_t_p" );
-        ResultSetMetaData metaData = rs.getMetaData();
-
-        int columnCount = metaData.getColumnCount();
-        System.out.println("column count:" + columnCount);
-
-        for (int i=1; i<=columnCount;i++){
-            System.out.println("type["+ i + "] is:" + metaData.getColumnType(i));
-        }
     }
 }
