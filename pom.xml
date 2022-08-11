@@ -40,7 +40,7 @@ under the License.
     </modules>
 
     <properties>
-        <hadoop.version>3.3.2</hadoop.version>
+        <hadoop.version>3.3.3</hadoop.version>
         <zookeeper.version>3.5.6</zookeeper.version>
         <flink.version>1.14.4</flink.version>
         <flink15.version>1.15.0</flink15.version>
