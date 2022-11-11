@@ -38,15 +38,11 @@ under the License.
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <artifactId>flink-streaming-java</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-clients_${scala.binary.version}</artifactId>
-        </dependency>
-		<dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
+            <artifactId>flink-clients</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -59,52 +55,6 @@ under the License.
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_${scala.binary.version}</artifactId>
-            <version>${akka.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-remote_${scala.binary.version}</artifactId>
-            <version>${akka.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.aeron</groupId>
-                    <artifactId>aeron-driver</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.aeron</groupId>
-                    <artifactId>aeron-client</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Transitive dependency of akka-remote that we explicitly define to keep it
-            visible after the shading (without relocation!) of akka-remote -->
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-stream_${scala.binary.version}</artifactId>
-        </dependency>
-
-        <!-- Transitive dependency of akka-remote that we explicitly define to keep it
-            visible after the shading (without relocation!) of akka-remote -->
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-protobuf_${scala.binary.version}</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-slf4j_${scala.binary.version}</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-testkit_${scala.binary.version}</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
