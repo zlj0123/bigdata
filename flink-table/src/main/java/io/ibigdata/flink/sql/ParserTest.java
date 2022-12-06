@@ -22,7 +22,6 @@ public class ParserTest {
 
         EnvironmentSettings settings = EnvironmentSettings
                 .newInstance()
-                .useBlinkPlanner()
                 .inStreamingMode()
                 .build();
 
@@ -30,16 +29,16 @@ public class ParserTest {
 
         DataStream<Tuple3<String, Long, Long>> tuple3DataStream =
                 env.fromCollection(Arrays.asList(
-                        Tuple3.of("2", 1L, 1627254000000L),
-                        Tuple3.of("2", 1L, 1627218000000L + 5000L),
-                        Tuple3.of("2", 101L, 1627218000000L + 6000L),
-                        Tuple3.of("2", 201L, 1627218000000L + 7000L),
-                        Tuple3.of("2", 301L, 1627218000000L + 7000L),
-                        Tuple3.of("2", 301L, 1627218000000L + 7000L),
-                        Tuple3.of("2", 301L, 1627218000000L + 7000L),
-                        Tuple3.of("2", 301L, 1627218000000L + 7000L),
-                        Tuple3.of("2", 301L, 1627218000000L + 7000L),
-                        Tuple3.of("2", 301L, 1627218000000L + 86400000 + 7000L)))
+                                Tuple3.of("2", 1L, 1627254000000L),
+                                Tuple3.of("2", 1L, 1627218000000L + 5000L),
+                                Tuple3.of("2", 101L, 1627218000000L + 6000L),
+                                Tuple3.of("2", 201L, 1627218000000L + 7000L),
+                                Tuple3.of("2", 301L, 1627218000000L + 7000L),
+                                Tuple3.of("2", 301L, 1627218000000L + 7000L),
+                                Tuple3.of("2", 301L, 1627218000000L + 7000L),
+                                Tuple3.of("2", 301L, 1627218000000L + 7000L),
+                                Tuple3.of("2", 301L, 1627218000000L + 7000L),
+                                Tuple3.of("2", 301L, 1627218000000L + 86400000 + 7000L)))
                         .assignTimestampsAndWatermarks(
                                 new BoundedOutOfOrdernessTimestampExtractor<Tuple3<String, Long, Long>>(Time.seconds(0L)) {
                                     @Override
@@ -51,8 +50,7 @@ public class ParserTest {
 //        tEnv.registerFunction("mod", new Mod_UDF());
 //        tEnv.registerFunction("status_mapper", new StatusMapper_UDF());
 
-        tEnv.createTemporaryView("source_db.source_table", tuple3DataStream,
-                "status, id, timestamp, rowtime.rowtime");
+        tEnv.createTemporaryView("source_db.source_table", tuple3DataStream);
 
         String sql = "SELECT\n"
                 + "  count(1),\n"

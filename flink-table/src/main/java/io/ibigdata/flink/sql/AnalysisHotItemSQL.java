@@ -17,7 +17,7 @@ import org.apache.flink.types.Row;
 public class AnalysisHotItemSQL {
     public static void main(String[] args) throws Exception {
 
-        EnvironmentSettings fsSettings = EnvironmentSettings.newInstance().useBlinkPlanner().inStreamingMode().build();
+        EnvironmentSettings fsSettings = EnvironmentSettings.newInstance().inStreamingMode().build();
         StreamExecutionEnvironment fsEnv = StreamExecutionEnvironment.getExecutionEnvironment();
         fsEnv.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
@@ -39,14 +39,14 @@ public class AnalysisHotItemSQL {
         });
 
         // 创建临时表
-        tableEnv.createTemporaryView("UserBehavior", dataStream, "itemId,behavior,timestamp.rowtime as ts");
+        tableEnv.createTemporaryView("UserBehavior", dataStream);
 
         String sql = ("select * from (select *,row_number() over(partition by windowEnd order by cnt desc) as row_num from(select itemId, count(itemId) as cnt, hop_end(ts, interval '5' minute, interval '1' hour) as windowEnd from " +
                 "UserBehavior where behavior = 'pv' group by itemId, hop(ts, interval '5' minute, interval '1' hour))) where row_num <= 5").trim();
 
         Table topNResultTable = tableEnv.sqlQuery(sql);
-        String[] names = new String[] {"itemId" ,"cnt" ,"windowEnd" , "row_num"};
-        TypeInformation[] types = new TypeInformation[] {Types.JAVA_BIG_INT(),Types.JAVA_BIG_INT(),Types.SQL_TIMESTAMP(), Types.JAVA_BIG_INT()};
+        String[] names = new String[]{"itemId", "cnt", "windowEnd", "row_num"};
+        TypeInformation[] types = new TypeInformation[]{Types.JAVA_BIG_INT(), Types.JAVA_BIG_INT(), Types.SQL_TIMESTAMP(), Types.JAVA_BIG_INT()};
 
         DataStream<Tuple2<Boolean, Row>> tuple2DataStream = tableEnv.toRetractStream(topNResultTable, Types.ROW(names, types));
         tuple2DataStream.print();
