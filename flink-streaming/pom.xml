@@ -105,6 +105,9 @@ under the License.
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 </project>
