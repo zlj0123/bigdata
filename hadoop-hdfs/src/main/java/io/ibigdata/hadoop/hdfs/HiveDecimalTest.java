@@ -1,8 +1,6 @@
 package io.ibigdata.hadoop.hdfs;
 
 import org.apache.hadoop.hive.common.type.HiveDecimal;
-import org.apache.hadoop.hive.serde2.typeinfo.HiveDecimalUtils;
-
 import java.math.BigDecimal;
 
 public class HiveDecimalTest {

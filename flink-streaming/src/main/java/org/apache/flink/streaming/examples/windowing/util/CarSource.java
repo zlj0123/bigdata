@@ -48,7 +48,7 @@ public class CarSource implements SourceFunction<Tuple4<Integer, Integer, Double
     }
 
     @Override
-    public void run(SourceFunction.SourceContext<Tuple4<Integer, Integer, Double, Long>> ctx)
+    public void run(SourceContext<Tuple4<Integer, Integer, Double, Long>> ctx)
             throws Exception {
 
         while (isRunning) {

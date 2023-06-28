@@ -41,12 +41,12 @@ under the License.
     <properties>
         <hadoop.version>3.3.4</hadoop.version>
         <zookeeper.version>3.5.7</zookeeper.version>
-        <flink.version>1.16.0</flink.version>
+        <flink.version>1.17.1</flink.version>
         <elasticsearch.version>7.8.0</elasticsearch.version>
-        <kafka.version>3.1.0</kafka.version>
+        <kafka.version>3.5.0</kafka.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <flinkcdc.version>2.3.0</flinkcdc.version>
+        <flinkcdc.version>2.4.0</flinkcdc.version>
         <scala.binary.version>2.12</scala.binary.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -219,6 +219,11 @@ under the License.
                 <artifactId>flink-connector-twitter</artifactId>
                 <version>${flink.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-datagen</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
             <!-- test dependencies -->
             <dependency>
                 <groupId>org.apache.flink</groupId>
@@ -238,7 +243,7 @@ under the License.
             <dependency>
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-connector-jdbc</artifactId>
-                <version>${flink.version}</version>
+                <version>3.1.1-1.17</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -248,7 +253,7 @@ under the License.
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.28</version>
+                <version>8.0.27</version>
             </dependency>
             <dependency>
                 <groupId>com.ververica</groupId>
