@@ -46,7 +46,7 @@ under the License.
         <kafka.version>3.5.0</kafka.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <flinkcdc.version>2.4.2</flinkcdc.version>
+        <flinkcdc.version>3.0-SNAPSHOT</flinkcdc.version>
         <scala.binary.version>2.12</scala.binary.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
