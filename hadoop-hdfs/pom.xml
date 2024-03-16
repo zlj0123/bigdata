@@ -93,6 +93,29 @@ under the License.
             <artifactId>opengauss-jdbc</artifactId>
             <version>5.0.0-og</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.hundsun.jrescloud</groupId>
+            <artifactId>jrescloud-common-encrypt</artifactId>
+            <version>3.1.6.2.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/libs/jrescloud-common-encrypt-3.1.6.2.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.hundsun.jrescloud</groupId>
+            <artifactId>jrescloud-common-gm</artifactId>
+            <version>3.1.6.2.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/libs/jrescloud-common-gm-3.1.6.2.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.69</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/libs/bcprov-jdk15on-1.69.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
 </project>
