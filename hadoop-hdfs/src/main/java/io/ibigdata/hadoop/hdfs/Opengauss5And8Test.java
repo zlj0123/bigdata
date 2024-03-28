@@ -17,8 +17,8 @@ public class Opengauss5And8Test {
         String password = "datago";
 
         String clearSql = "truncate table datago_test1";
-        String writeRecordSql = "INSERT INTO datago_test1 (c_int,c_tinyint,c_smallint,c_integer,c_number,c_boolean,c_clob,c_blob,c_byte) VALUES(?,?,?,?,?,?,?,?,?)";
-        String metaDataSql = "select c_int,c_tinyint,c_smallint,c_integer,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1 where 1=2";
+        String writeRecordSql = "INSERT INTO datago_test1 (c_int,c_tinyint,c_smallint,c_integer,c_bigint,c_number,c_boolean,c_clob,c_blob,c_byte) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String metaDataSql = "select c_int,c_tinyint,c_smallint,c_integer,c_bigint,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1 where 1=2";
 
         Class.forName(DRIVER_CLASS_NAME);
 
@@ -42,36 +42,38 @@ public class Opengauss5And8Test {
             connection.setAutoCommit(false);
 
             preparedStatement.setString(1,"1");
-            preparedStatement.setInt(2,1);
+            preparedStatement.setNull(2,Types.INTEGER);
             preparedStatement.setInt(3,1);
             preparedStatement.setString(4,"1");
-            preparedStatement.setString(5,"12345678911.123456789");
-            preparedStatement.setBoolean(6,Boolean.TRUE);
-            preparedStatement.setString(7,"abcdefghhhhhh.123456789h");
+            preparedStatement.setString(5,"223372036854775807");
+            preparedStatement.setString(6,"12345678911.123456789");
+            preparedStatement.setBoolean(7,Boolean.TRUE);
+            preparedStatement.setString(8,"abcdefghhhhhh.123456789h");
 
             byte[] bytes = {1, 2, 3, 4};
             ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
-            preparedStatement.setBlob(8, inputStream);
-            preparedStatement.setBytes(9,bytes);
+            preparedStatement.setBlob(9, inputStream);
+            preparedStatement.setBytes(10,bytes);
             preparedStatement.addBatch();
 
             preparedStatement.setString(1,"2");
             preparedStatement.setInt(2,2);
             preparedStatement.setInt(3,2);
             preparedStatement.setString(4,"2");
-            preparedStatement.setString(5,"12345678911.123456789");
-            preparedStatement.setBoolean(6,Boolean.FALSE);
-            preparedStatement.setString(7,"abcdefghhhhhh.123456789h");
+            preparedStatement.setString(5,"223372036854775807");
+            preparedStatement.setString(6,"12345678911.123456789");
+            preparedStatement.setBoolean(7,Boolean.FALSE);
+            preparedStatement.setString(8,"abcdefghhhhhh.123456789h");
 
             ByteArrayInputStream inputStream1 = new ByteArrayInputStream(bytes);
-            preparedStatement.setBlob(8, inputStream1);
-            preparedStatement.setBytes(9,bytes);
+            preparedStatement.setNull(9, Types.BLOB);
+            preparedStatement.setBytes(10,bytes);
             preparedStatement.addBatch();
 
             preparedStatement.executeBatch();
             connection.commit();
 
-            ResultSet rs = stmtQuery.executeQuery("select c_int,c_tinyint,c_smallint,c_integer,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1");
+            ResultSet rs = stmtQuery.executeQuery("select c_int,c_tinyint,c_smallint,c_integer,c_bigint,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1");
             System.out.println("---------------打印数据----------------------");
             while (rs.next()) {
                 System.out.println( rs.getObject(1) + "      " + rs.getObject(2) + "      " + rs.getObject(3)
@@ -87,8 +89,8 @@ public class Opengauss5And8Test {
         String password = "dbtrade123!";
 
         String clearSql = "truncate table datago_test1";
-        String writeRecordSql = "INSERT INTO datago_test1 (c_int,c_tinyint,c_smallint,c_integer,c_number,c_boolean,c_clob,c_blob,c_byte) VALUES(?,?,?,?,?,?,?,?,?)";
-        String metaDataSql = "select c_int,c_tinyint,c_smallint,c_integer,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1 where 1=2";
+        String writeRecordSql = "INSERT INTO datago_test1 (c_int,c_tinyint,c_smallint,c_integer,c_bigint,c_number,c_boolean,c_clob,c_blob,c_byte) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String metaDataSql = "select c_int,c_tinyint,c_smallint,c_integer,c_bigint,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1 where 1=2";
 
         Class.forName(DRIVER_CLASS_NAME);
 
@@ -112,36 +114,40 @@ public class Opengauss5And8Test {
             connection.setAutoCommit(false);
 
             preparedStatement.setString(1,"1");
-            preparedStatement.setInt(2,1);
+            preparedStatement.setNull(2,Types.INTEGER);
             preparedStatement.setInt(3,1);
+            // preparedStatement.setInt(4,1);
             preparedStatement.setString(4,"1");
-            preparedStatement.setString(5,"12345678911.123456789");
-            preparedStatement.setBoolean(6,Boolean.TRUE);
-            preparedStatement.setString(7,"abcdefghhhhhh.123456789h");
+            preparedStatement.setString(5,"223372036854775807");
+            preparedStatement.setString(6,"12345678911.123456789");
+            preparedStatement.setBoolean(7,Boolean.TRUE);
+            preparedStatement.setString(8,"abcdefghhhhhh.123456789h");
 
             byte[] bytes = {1, 2, 3, 4};
             ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
-            preparedStatement.setBlob(8, inputStream);
-            preparedStatement.setBytes(9,bytes);
+            preparedStatement.setBlob(9, inputStream);
+            preparedStatement.setBytes(10,bytes);
             preparedStatement.addBatch();
 
             preparedStatement.setString(1,"2");
             preparedStatement.setInt(2,2);
             preparedStatement.setInt(3,2);
+            // preparedStatement.setInt(4,2);
             preparedStatement.setString(4,"2");
-            preparedStatement.setString(5,"12345678911.123456789");
-            preparedStatement.setBoolean(6,Boolean.FALSE);
-            preparedStatement.setString(7,"abcdefghhhhhh.123456789h");
+            preparedStatement.setString(5,"223372036854775807");
+            preparedStatement.setString(6,"12345678911.123456789");
+            preparedStatement.setBoolean(7,Boolean.FALSE);
+            preparedStatement.setString(8,"abcdefghhhhhh.123456789h");
 
             ByteArrayInputStream inputStream1 = new ByteArrayInputStream(bytes);
-            preparedStatement.setBlob(8, inputStream1);
-            preparedStatement.setBytes(9,bytes);
+            preparedStatement.setNull(9, Types.BLOB);
+            preparedStatement.setBytes(10,bytes);
             preparedStatement.addBatch();
 
             preparedStatement.executeBatch();
             connection.commit();
 
-            ResultSet rs = stmtQuery.executeQuery("select c_int,c_tinyint,c_smallint,c_integer,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1");
+            ResultSet rs = stmtQuery.executeQuery("select c_int,c_tinyint,c_smallint,c_integer,c_bigint,c_number,c_boolean,c_clob,c_blob,c_byte from datago_test1");
             System.out.println("---------------打印数据----------------------");
             while (rs.next()) {
                 System.out.println( rs.getObject(1) + "      " + rs.getObject(2) + "      " + rs.getObject(3)
