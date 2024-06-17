@@ -30,7 +30,7 @@ public class HundsunMysqlSourceTest {
                         " 'hostname' = '10.20.30.113',\n" +
                         " 'port' = '33061',\n" +
                         " 'username' = 'root',\n" +
-                        " 'password' = 'admin@123',\n" +
+                        " 'password' = '123456',\n" +
                         " 'database-name' = 'zhanglijun',\n" +
                         " 'table-name' = 'flink_cdc_source',\n" +
                         " 'server-id' = '123456789',\n" +
@@ -48,7 +48,7 @@ public class HundsunMysqlSourceTest {
                         " 'connector' = 'jdbc',\n" +
                         " 'url' = 'jdbc:mysql://10.20.30.113:33061/zhanglijun',\n" +
                         " 'username' = 'root',\n" +
-                        " 'password' = 'admin@123',\n" +
+                        " 'password' = '123456',\n" +
                         " 'sink.buffer-flush.max-rows' = '1',\n" +
                         " 'sink.buffer-flush.interval' = '1s',\n" +
                         " 'table-name' = 'flink_cdc_sink'\n" +

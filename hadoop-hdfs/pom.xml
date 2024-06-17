@@ -95,6 +95,14 @@ under the License.
         </dependency>
 
         <dependency>
+            <groupId>com.huawei.opengauss.jdbc</groupId>
+            <artifactId>gaussdbDriver</artifactId>
+            <version>5.0.0-htrunk3-uf30</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/libs/gaussdbDriver-5.0.0-htrunk3-uf30.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>com.hundsun.jrescloud</groupId>
             <artifactId>jrescloud-common-encrypt</artifactId>
             <version>3.1.6.2.1</version>
